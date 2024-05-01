@@ -22,10 +22,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       city: entity.Address.city,
       active: entity.isActive(),
       rewardPoints: entity.rewardPoints,
-    },
-      {
-        transaction: this.transaction.getTransaction()
-      }
+    }
     );
   }
 
@@ -43,8 +40,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       {
         where: {
           id: entity.id,
-        },
-        transaction: this.transaction.getTransaction()
+        }
       }
     );
   }
@@ -56,8 +52,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
         where: {
           id,
         },
-        rejectOnEmpty: true,
-        transaction: this.transaction.getTransaction()
+        rejectOnEmpty: true
       });
     } catch (error) {
       throw new Error("Customer not found");
@@ -75,9 +70,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
   }
 
   async findAll(): Promise<Customer[]> {
-    const customerModels = await CustomerModel.findAll({
-      transaction: this.transaction.getTransaction()
-    });
+    const customerModels = await CustomerModel.findAll();
 
     const customers = customerModels.map((customerModels) => {
       let customer = new Customer(customerModels.id, customerModels.name);

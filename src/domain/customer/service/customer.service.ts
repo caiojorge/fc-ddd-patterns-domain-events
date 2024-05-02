@@ -15,11 +15,14 @@ export class CustomerService{
 
     async create(name: string){
         const customer = Customer.create(uuid(), name);
-        this.transaction.do(async (transaction) => {
-            this.customerRepo.setTransaction(transaction)
-            await this.customerRepo.create(customer);
-            await this.mediator.publish(customer); 
-        })
+        // this.transaction.do(async (transaction) => {
+        //     this.customerRepo.setTransaction(transaction)
+        //     await this.customerRepo.create(customer);
+        //     await this.mediator.publish(customer); 
+        // })
+        await this.customerRepo.create(customer);
+        //await this.mediator.publish(customer);
+
         return customer;
     }
 }

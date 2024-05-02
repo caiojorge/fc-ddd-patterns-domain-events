@@ -7,5 +7,6 @@ export default class CustomerChangeAddressEvent implements EventInterface {
     constructor(eventData: any) {
       this.dataTimeOccurred = new Date();
       this.eventData = eventData;
+      //console.log(`CustomerChangeAddressEvent: Endereço do cliente: ${eventData.id}, ${eventData.name} alterado para: ${eventData.address.street} .....`);
     }
   }

@@ -31,8 +31,11 @@ export default class EventDispatcher implements EventDispatcherInterface {
 
   notify(event: eventInterface): void {
     const eventName = event.constructor.name;
+    console.log(`EventDispatcher: Evento ${eventName} disparando`);
     if (this.eventHandlers[eventName]) {
+      //console.log(`entrou no if`);
       this.eventHandlers[eventName].forEach((eventHandler) => {
+        console.log(`EventDispatcher: Evento ${eventName} disparado`);
         eventHandler.handle(event);
       });
     }
